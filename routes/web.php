@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,12 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $posts = [
-        // "TitleA",
-        // "TitleB",
-        // "TitleC",
-    ];
-    return view('index')
-        ->with(["posts" => $posts]);
-});
+// Route::get('/', ['App\Http\Controllers\PostController','index']);
+// Route::get('/', [App\Http\Controllers\PostController::class,'index']);
+//上で use App≠Http\Controllers\PostControllerと記載すると、さらに短縮した記法が可能
+Route::get('/', [PostController::class,'index']);
+

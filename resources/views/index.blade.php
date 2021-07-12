@@ -18,23 +18,13 @@
     <main>
         <div class="container">
             <h1>My BBS</h1>
-            {{-- <ul>
-                <li>
-                    <?php echo htmlspecialchars($posts[0] , ENT_QUOTES,'UTF-8') ;?>
-                </li>
-                <li>{{$posts[0]}}</li>
-                <?php foreach($posts as $post) :?>
-                <li><?php echo htmlspecialchars($post,ENT_QUOTES, 'UTF-8');?></li>
-                <?php endforeach;?>
-            </ul> --}}
-            {{-- <ul>
-                @foreach ($posts as $post)
-                <li>{{$post}}</li>
-                @endforeach
-            </ul> --}}
             <ul>
-                @forelse ($posts as $post)
-                    <li>{{$post}}</li>
+                @forelse ($posts as $index => $post)
+                    <li>
+                        <a href="/posts/{{$index}}">
+                            {{$post}}
+                        </a>
+                    </li>
                 @empty
                     <li>No posts yet!</li>
                 @endforelse
