@@ -47,3 +47,6 @@ Route::get('/posts/create' , [PostController::class , 'create'])
     //これだとルーティングエラー。理由：既に上でRoute::get('posts/{post}' , [~~])が作成されているため。
     //ルーティングは上からチェックされるが、'/posts/create'は'posts/{post}'と形が同じ。
     //この場合、PostControllerのshow()メソッドが使用されるが、show(Post $post){~}の$postにcreateは格納できない。
+
+Route::post('/posts/store' , [PostController::class , 'store'])
+    ->name('posts.store');
