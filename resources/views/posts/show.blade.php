@@ -19,7 +19,9 @@
     <main>
         <div class="container">
             <div class="back-link">
-               &laquo; <a href="/">back</a>
+               &laquo; <a href="{{route('posts.index')}}">back</a>
+               {{-- 名前をつけたroutingを呼び出す場合、{{route()}}を使用--}}
+               {{-- 今回はposts.indexという名前のroutingを呼ぶため{{route('posts.index')}} を呼ぶ--}}
             </div>
 
             <h1>{{$post}}</h1>
