@@ -22,6 +22,7 @@ class PostController extends Controller
     //各ページの詳細ページにアクセスするメソッド
     public function show($id)
     {
+        //postsディレクトリのshow.blade.phpを呼び出すには、posts.showと書く必要がある。
         return view('posts.show')
             ->with(['post' => $this->posts[$id]]);
     }

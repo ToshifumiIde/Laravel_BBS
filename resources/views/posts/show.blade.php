@@ -11,12 +11,17 @@
 <head>
     <meta charset="utf-8">
 <title>My BBS</title>
-<link rel="stylesheet" href="css/style.css">
+{{-- cssのリンク先をpublicディレクトリ下にするためには{{url()}}と記載する必要がある --}}
+<link rel="stylesheet" href="{{url('css/style.css')}}">
 </head>
 <body>
     <header></header>
     <main>
         <div class="container">
+            <div class="back-link">
+               &laquo; <a href="/">back</a>
+            </div>
+
             <h1>{{$post}}</h1>
         </div>
     </main>
