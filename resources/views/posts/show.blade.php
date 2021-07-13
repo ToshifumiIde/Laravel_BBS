@@ -1,32 +1,14 @@
-<?php
-
-// var_dump($posts);
-// exit;
-// dd($posts); //dump&dieの略。上記と全く同じ結果となる。
-
-?>
-
-<!DOCTYPE HTML>
-<html lang="ja">
-<head>
-    <meta charset="utf-8">
-<title>My BBS</title>
-{{-- cssのリンク先をpublicディレクトリ下にするためには{{url()}}と記載する必要がある --}}
-<link rel="stylesheet" href="{{url('css/style.css')}}">
-</head>
-<body>
-    <header></header>
-    <main>
-        <div class="container">
-            <div class="back-link">
-               &laquo; <a href="{{route('posts.index')}}">back</a>
-               {{-- 名前をつけたroutingを呼び出す場合、{{route()}}を使用--}}
-               {{-- 今回はposts.indexという名前のroutingを呼ぶため{{route('posts.index')}} を呼ぶ--}}
-            </div>
-
-            <h1>{{$post}}</h1>
-        </div>
-    </main>
-    <footer></footer>
-</body>
-</html>
+<x-layout>
+    {{-- lauyout.blade.phpで設定した$titleに値を格納していく。 --}}
+    {{-- 方法は、<X-slot name="title"></x-solt>で囲い、name属性に変数名を格納する。--}}
+    <x-slot name="title">
+        {{$post}} - My BBS
+    </x-slot>
+    <div class="back-link">
+        &laquo; <a href="{{route('posts.index')}}">back</a>
+            {{-- 名前をつけたroutingを呼び出す場合、{{route()}}を使用--}}
+            {{-- 今回はposts.indexという名前のroutingを呼ぶため{{route('posts.index')}} を呼ぶ--}}
+    </div>
+    <h1>{{$post}}</h1>
+    <h2>こんにちは</h2>
+</x-layout>
