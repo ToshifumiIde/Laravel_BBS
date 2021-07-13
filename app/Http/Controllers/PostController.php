@@ -22,13 +22,20 @@ class PostController extends Controller
         return view('index')
             ->with(["posts" => $posts]);
     }
-    //各ページの詳細ページにアクセスするメソッド
-    public function show($id)
+    // 各ページの詳細ページにアクセスするメソッド
+    // public function show($id)
+    // {
+    //     //postsディレクトリのshow.blade.phpを呼び出すには、posts.showと書く必要がある。
+    //     $post = Post::findOrFail($id);
+
+    //     return view('posts.show')
+    //         ->with(['post' => $post]);
+    // }
+    // このメソッドをImplicitBindingを用いて書くと下記の通り。
+    public function show(Post $post)
     {
-        //postsディレクトリのshow.blade.phpを呼び出すには、posts.showと書く必要がある。
-        $post = Post::findOrFail($id);
-        
         return view('posts.show')
             ->with(['post' => $post]);
     }
+
 }
