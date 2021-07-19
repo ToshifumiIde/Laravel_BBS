@@ -42,15 +42,15 @@ class PostController extends Controller
     {
         return view('posts.create');
     }
-    
+
+    //投稿されたデータのDBへの保存処理
     public function store(Request $request)
     {
-        $post = new Post();
+        $post = new Post();//インスタンスを生成
         $post->title = $request->title;
         $post->body = $request->body;
-        $post->save();
-
+        $post->save();//DBにデータを保存
         return redirect()
-            ->route('posts.index');
+            ->route('posts.index');//保存終了後、posts.indexに移動
     }
 }

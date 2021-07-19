@@ -44,9 +44,13 @@ Route::get('/posts/{post}' , [PostController::class , 'show'])
 
 Route::get('/posts/create' , [PostController::class , 'create'])
     ->name('posts.create');
-    //これだとルーティングエラー。理由：既に上でRoute::get('posts/{post}' , [~~])が作成されているため。
+    //上のRoute::get()にwhere処理を実施しなかった場合、ルーティングエラー。
+    //理由：既に上でRoute::get('posts/{post}' , [~~])が作成されているため。
     //ルーティングは上からチェックされるが、'/posts/create'は'posts/{post}'と形が同じ。
     //この場合、PostControllerのshow()メソッドが使用されるが、show(Post $post){~}の$postにcreateは格納できない。
+    //したがって、上のRoute::get()処理の後ろに->where('post' , '[0-9]+');文を追加し、
+    //正規表現の[0-9]しか入らないように制御する。
 
+    //postされたもののroute
 Route::post('/posts/store' , [PostController::class , 'store'])
     ->name('posts.store');
