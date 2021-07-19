@@ -52,3 +52,8 @@ button {
 .form__button {
     text-align: right;
 }
+
+.error{
+    color:red;
+    font-size: 8px;
+}

@@ -13,14 +13,25 @@
         <div class="form__group">
             <label for="">
                 Title
-                <input type="text" name='title'>
+                <input type="text" name='title' value='{{old("title")}}'>
             </label>
+            @error('title')
+                <div class="error" >
+                    {{$message}}
+                </div>
+            @enderror
         </div>
         <div class="form__group">
             <label for="">
                 Body
-                <textarea name="body"></textarea>
+                <textarea name="body">{{old("body")}}</textarea>
+                {{-- textareaの場合、タグの中に{{old("body")}}とする必要がある点に注意 --}}
             </label>
+            @error('body')
+            <div class="error">
+                {{$message}}
+            </div>
+            @enderror
         </div>
         <div class="form__button">
             <button>Add</button>
