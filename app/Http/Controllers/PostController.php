@@ -46,7 +46,7 @@ class PostController extends Controller
     //投稿されたデータのDBへの保存処理
     public function store(Request $request)
     {
-        //$requestで送信された投稿にたいし、validationをかける
+        //$requestで送信された投稿に対し、validationをかける
         $request->validate([
             'title' => 'required|min:3',
             'body' => 'required',

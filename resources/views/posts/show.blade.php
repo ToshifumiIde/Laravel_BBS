@@ -10,5 +10,5 @@
             {{-- 今回はposts.indexという名前のroutingを呼ぶため{{route('posts.index')}} を呼ぶ--}}
     </div>
     <h1>{{$post->title}}</h1>
-    <p>{{$post->body}}</p>
+    <p>{!!nl2br(e($post->body))!!}</p>
 </x-layout>
