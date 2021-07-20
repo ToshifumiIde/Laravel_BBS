@@ -95,4 +95,9 @@ class PostController extends Controller
             ->route('posts.show' , $post);//保存終了後、posts.showに移動。第二引数に$postを渡し、投稿された内容もわたす。
     }
 
+    public function destroy(Post $post){
+        $post->delete();
+        return redirect()
+            ->route('posts.index');
+    }
 }

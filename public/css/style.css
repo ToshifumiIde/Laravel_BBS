@@ -15,6 +15,9 @@ h1 > a {
     font-size: 16px;
     font-weight: normal;
 }
+a{
+    text-decoration: none;
+}
 
 li {
     line-height: 1.6;
@@ -56,4 +59,13 @@ button {
 .error{
     color:red;
     font-size: 8px;
+}
+
+.button{
+    border:none;
+    background:transparent;
+    font-size: 16px;
+    color:#15c;
+    cursor: pointer;
+    vertical-align: 1px;
 }
