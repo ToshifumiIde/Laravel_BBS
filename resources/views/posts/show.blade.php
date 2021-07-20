@@ -12,7 +12,11 @@
     <h1>
         <span>{{$post->title}}</span>
         <a href="{{route('posts.edit' , $post)}}">[Edit]</a>
-        <form action="{{route('posts.destroy' , $post)}}" method="post" id="js-delete_post">
+        <form
+            action="{{route('posts.destroy' , $post)}}"
+            method="post"
+            id="js-delete_post"
+        >
             @method("DELETE")
             @csrf
             <button class="button" >[ X ]</button>
@@ -30,8 +34,19 @@
                 <button>Add</button>
             </form>
         </li>
-        @foreach($post->comments as $comment)
-            <li>{{ $comment->body }}</li>
+        @foreach($post->comments()->latest()->get() as $comment)
+            <li>
+                {{ $comment->body }}
+                <form
+                    action="{{route('comments.destroy' , $comment)}}"
+                    class="delete_comment"
+                    method="post"
+                >
+                    @method("DELETE")
+                    @csrf
+                    <button class="button">[ X ]</button>
+                </form>
+            </li>
         @endforeach
     </ul>
 
@@ -41,13 +56,23 @@
         {
         console.log("hello");
         const del = document.getElementById("js-delete_post");
+        let del_comment = document.querySelectorAll(".delete_comment");
+        console.log(del_comment);
         del.addEventListener('submit',(e)=>{
             e.preventDefault();
-            console.log("こんにちは");
             if(!window.confirm("Are You sure to delete ?")){
                 return;
             }
             e.target.submit();//buttonクリック時の送信処理
+        });
+        del_comment.forEach(from =>{
+                form.addEventListener("submit" , (e)=>{
+                    e.preventDefault();
+                    if(!confirm("Sure to delete?")){
+                        return;
+                    }
+                    form.submit();//form == e.target
+                });
         });
         }
     </script>
