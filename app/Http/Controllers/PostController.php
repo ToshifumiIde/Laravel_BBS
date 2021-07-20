@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Http\Requests\PostRequest;//App\Http\Requestsの名前空間に属するPostRequestクラスを使用
 
 class PostController extends Controller
 {
@@ -33,7 +34,7 @@ class PostController extends Controller
     // }
     // このメソッドをImplicitBindingを用いて書くと下記の通り。
     public function show(Post $post)
-    {
+    { //名前空間Postの$postを呼び出し
         return view('posts.show')
             ->with(['post' => $post]);
     }
@@ -44,18 +45,19 @@ class PostController extends Controller
     }
 
     //投稿されたデータのDBへの保存処理
-    public function store(Request $request)
-    {
+    public function store(PostRequest $request)
+    {//名前空間Requestの$requestを呼び出し
         //$requestで送信された投稿に対し、validationをかける
-        $request->validate([
-            'title' => 'required|min:3',
-            'body' => 'required',
-        ],[
-            'title.required' => 'タイトルは必須です',
-            'title.min' => ':min 文字以上入力してください',
-            'body.required' => '本文は必須です',
-        ]
-    );
+    //     $request->validate([
+    //         'title' => 'required|min:3',
+    //         'body' => 'required',
+    //     ],[
+    //         'title.required' => 'タイトルは必須です',
+    //         'title.min' => ':min 文字以上入力してください',
+    //         'body.required' => '本文は必須です',
+    //     ]
+    // );
+    // ここまでのバリデーション機能はPostRequest.phpのclassにまとめて、PostRequest $requestで呼び出しているため、記述不要
 
         $post = new Post();//インスタンスを生成
         $post->title = $request->title;
@@ -71,18 +73,20 @@ class PostController extends Controller
             ->with(['post' => $post]);
     }
 
-    public function update(Request $request , Post $post)
+    public function update(PostRequest $request , Post $post)
     {//インプリシットバインディングでPost $postを渡す...理解していない
         //$requestで送信された投稿に対し、validationをかける
-        $request->validate([
-            'title' => 'required|min:3',
-            'body' => 'required',
-        ],[
-            'title.required' => 'タイトルは必須です',
-            'title.min' => ':min 文字以上入力してください',
-            'body.required' => '本文は必須です',
-        ]
-    );
+    //     $request->validate([
+    //         'title' => 'required|min:3',
+    //         'body' => 'required',
+    //     ],[
+    //         'title.required' => 'タイトルは必須です',
+    //         'title.min' => ':min 文字以上入力してください',
+    //         'body.required' => '本文は必須です',
+    //     ]
+    // );
+    // 上記バリデーションに関しては、PostRequest.phpのclass内で記述し
+    // PostRequest $requestにて呼び出しているため不要
 
         $post->title = $request->title;
         $post->body = $request->body;
