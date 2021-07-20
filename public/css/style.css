@@ -15,8 +15,12 @@ h1 > a {
     font-size: 16px;
     font-weight: normal;
 }
-a{
+a {
     text-decoration: none;
+}
+h2 {
+    font-size: 16px;
+    margin-top: 40px;
 }
 
 li {
@@ -56,16 +60,24 @@ button {
     text-align: right;
 }
 
-.error{
-    color:red;
+.error {
+    color: red;
     font-size: 8px;
 }
 
-.button{
-    border:none;
-    background:transparent;
+.button {
+    border: none;
+    background: transparent;
     font-size: 16px;
-    color:#15c;
+    color: #15c;
     cursor: pointer;
     vertical-align: 1px;
+}
+
+.comment_form {
+    display: flex;
+}
+
+.comment_form > button{
+    margin-left: 8px;
 }
