@@ -5,10 +5,13 @@
         {{$post->title}} - My BBS
     </x-slot>
     <div class="back-link">
-        &laquo; <a href="{{route('posts.index')}}">back</a>
+        &laquo; <a href="{{route('posts.index')}}">Back</a>
             {{-- 名前をつけたroutingを呼び出す場合、{{route()}}を使用--}}
             {{-- 今回はposts.indexという名前のroutingを呼ぶため{{route('posts.index')}} を呼ぶ--}}
     </div>
-    <h1>{{$post->title}}</h1>
+    <h1>
+        <span>{{$post->title}}</span>
+        <a href="{{route('posts.edit' , $post)}}">[Edit]</a>
+    </h1>
     <p>{!!nl2br(e($post->body))!!}</p>
 </x-layout>

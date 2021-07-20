@@ -64,4 +64,31 @@ class PostController extends Controller
         return redirect()
             ->route('posts.index');//保存終了後、posts.indexに移動
     }
+
+    public function edit(Post $post)
+    {
+        return view('posts.edit')
+            ->with(['post' => $post]);
+    }
+
+    public function update(Request $request , Post $post)
+    {//インプリシットバインディングでPost $postを渡す...理解していない
+        //$requestで送信された投稿に対し、validationをかける
+        $request->validate([
+            'title' => 'required|min:3',
+            'body' => 'required',
+        ],[
+            'title.required' => 'タイトルは必須です',
+            'title.min' => ':min 文字以上入力してください',
+            'body.required' => '本文は必須です',
+        ]
+    );
+
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->save();//DBにデータを保存
+        return redirect()
+            ->route('posts.show' , $post);//保存終了後、posts.showに移動。第二引数に$postを渡し、投稿された内容もわたす。
+    }
+
 }

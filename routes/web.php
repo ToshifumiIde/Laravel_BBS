@@ -54,3 +54,11 @@ Route::get('/posts/create' , [PostController::class , 'create'])
     //postされたもののroute
 Route::post('/posts/store' , [PostController::class , 'store'])
     ->name('posts.store');
+
+Route::get('/posts/{post}/edit' , [PostController::class , 'edit'])
+    ->name('posts.edit')
+    ->where('post' , '[0-9]+');
+
+//dataの一部を更新する場合、Route::postではなくRoute::patch形式にする必要がある
+Route::patch('/posts/{post}/update' , [PostController::class , 'update'])
+    ->name('posts.update');
